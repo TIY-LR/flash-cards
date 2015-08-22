@@ -222,9 +222,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508222059263_Initial.cs" />
-    <Compile Include="Migrations\201508222059263_Initial.Designer.cs">
-      <DependentUpon>201508222059263_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201508222126216_removedListFromCourses.cs" />
+    <Compile Include="Migrations\201508222126216_removedListFromCourses.Designer.cs">
+      <DependentUpon>201508222126216_removedListFromCourses.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -304,8 +304,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508222059263_Initial.resx">
-      <DependentUpon>201508222059263_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508222126216_removedListFromCourses.resx">
+      <DependentUpon>201508222126216_removedListFromCourses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

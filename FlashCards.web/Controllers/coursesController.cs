@@ -73,7 +73,7 @@ namespace FlashCards.web.Controllers
 
         // POST: api/courses
         [ResponseType(typeof(Course))]
-        public IHttpActionResult Postcourse(CourseVM course)
+        public IHttpActionResult Postcourse(Course course)
         {
             Course newCourse = new Course
             {
