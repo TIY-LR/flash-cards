@@ -21,9 +21,10 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cards
-        public List<Card> GetCards()
-        {Logger.Log("Index listed");
-            return db.Cards.ToList();
+        [ResponseType(typeof(Card))]
+        public IHttpActionResult GetCards()
+        {
+            return Json(db.Cards.ToList());
         }
         
         // GET: api/Cards/5
