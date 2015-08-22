@@ -7,9 +7,9 @@ namespace FlashCards.web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedTestModel : IMigrationMetadata
+    public sealed partial class AddedCard : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedTestModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedCard));
         
         string IMigrationMetadata.Id
         {

@@ -14,44 +14,44 @@ using FlashCards.web.Models;
 namespace FlashCards.web.Controllers
 {
     [EnableCors(origins : "*",headers : "*",methods:"*")]
-    public class TestModelsController : ApiController
+    public class CardsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/TestModels
-        public IQueryable<TestModel> GetTestModels()
+        // GET: api/Cards
+        public IQueryable<Card> GetCards()
         {
-            return db.TestModels;
+            return db.Cards;
         }
         
-        // GET: api/TestModels/5
-        [ResponseType(typeof(TestModel))]
-        public IHttpActionResult GetTestModel(Guid id)
+        // GET: api/Cards/5
+        [ResponseType(typeof(Card))]
+        public IHttpActionResult GetCard(Guid id)
         {
-            TestModel testModel = db.TestModels.Find(id);
-            if (testModel == null)
+            Card Card = db.Cards.Find(id);
+            if (Card == null)
             {
                 return NotFound();
             }
 
-            return Ok(testModel);
+            return Ok(Card);
         }
 
-        // PUT: api/TestModels/5
+        // PUT: api/Cards/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTestModel(Guid id, TestModel testModel)
+        public IHttpActionResult PutCard(Guid id, Card Card)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != testModel.Id)
+            if (id != Card.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(testModel).State = EntityState.Modified;
+            db.Entry(Card).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TestModelExists(id))
+                if (!CardExists(id))
                 {
                     return NotFound();
                 }
@@ -72,16 +72,16 @@ namespace FlashCards.web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/TestModels
-        [ResponseType(typeof(TestModel))]
-        public IHttpActionResult PostTestModel(TestModel testModel)
+        // POST: api/Cards
+        [ResponseType(typeof(Card))]
+        public IHttpActionResult PostCard(Card Card)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.TestModels.Add(testModel);
+            db.Cards.Add(Card);
 
             try
             {
@@ -89,7 +89,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TestModelExists(testModel.Id))
+                if (CardExists(Card.Id))
                 {
                     return Conflict();
                 }
@@ -99,23 +99,23 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = testModel.Id }, testModel);
+            return CreatedAtRoute("DefaultApi", new { id = Card.Id }, Card);
         }
 
-        // DELETE: api/TestModels/5
-        [ResponseType(typeof(TestModel))]
-        public IHttpActionResult DeleteTestModel(Guid id)
+        // DELETE: api/Cards/5
+        [ResponseType(typeof(Card))]
+        public IHttpActionResult DeleteCard(Guid id)
         {
-            TestModel testModel = db.TestModels.Find(id);
-            if (testModel == null)
+            Card Card = db.Cards.Find(id);
+            if (Card == null)
             {
                 return NotFound();
             }
 
-            db.TestModels.Remove(testModel);
+            db.Cards.Remove(Card);
             db.SaveChanges();
 
-            return Ok(testModel);
+            return Ok(Card);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,9 +127,9 @@ namespace FlashCards.web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TestModelExists(Guid id)
+        private bool CardExists(Guid id)
         {
-            return db.TestModels.Count(e => e.Id == id) > 0;
+            return db.Cards.Count(e => e.Id == id) > 0;
         }
     }
 }

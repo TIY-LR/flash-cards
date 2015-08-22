@@ -16,7 +16,7 @@ namespace FlashCards.web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "TestModels", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Cards", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
