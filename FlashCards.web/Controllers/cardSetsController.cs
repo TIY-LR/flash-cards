@@ -17,9 +17,9 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/cardSets
-        public IQueryable<cardSet> GetcardSets()
+        public IHttpActionResult GetcardSets()
         {
-            return db.cardSets;
+            return Json(new { cardsets= db.cardSets.ToList()});
         }
 
         // GET: api/cardSets/5

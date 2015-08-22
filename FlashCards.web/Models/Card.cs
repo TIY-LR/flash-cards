@@ -14,7 +14,7 @@ namespace FlashCards.web.Models
     public class course
     {
         public Guid id { get; set; }
-        public List<cardSet> cardSets { get; set; }
+        public virtual List<cardSet> cardSets { get; set; }
         public string name { get; set; }
         public string description { get; set; }
     }
@@ -22,7 +22,7 @@ namespace FlashCards.web.Models
     public class cardSet
     {
         public Guid id { get; set; }
-        public List<card> cards { get; set; }
+        public virtual List<card> cards { get; set; }
 
         public string name { get; set; }
         public string description { get; set; }
