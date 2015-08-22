@@ -17,7 +17,7 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/courses
-        [ResponseType(typeof(Course))]
+       // [ResponseType(typeof(Course))]
         public IHttpActionResult GetCards()
         {
             return Json(new {Courses= db.Courses.ToList()});
