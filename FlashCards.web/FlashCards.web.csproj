@@ -215,24 +215,16 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\cardSetsController.cs" />
-    <Compile Include="Controllers\coursesController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508221858036_newMigration - Copy.cs" />
-    <Compile Include="Migrations\201508221858036_newMigration - Copy.Designer.cs">
-      <DependentUpon>201508221858036_newMigration - Copy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508221921555_newMig - Copy.cs" />
-    <Compile Include="Migrations\201508221921555_newMig - Copy.Designer.cs">
-      <DependentUpon>201508221921555_newMig - Copy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508221959033_newMig3 - Copy.cs" />
-    <Compile Include="Migrations\201508221959033_newMig3 - Copy.Designer.cs">
-      <DependentUpon>201508221959033_newMig3 - Copy.cs</DependentUpon>
+    <Compile Include="Migrations\201508222059263_Initial.cs" />
+    <Compile Include="Migrations\201508222059263_Initial.Designer.cs">
+      <DependentUpon>201508222059263_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -312,14 +304,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508221858036_newMigration - Copy.resx">
-      <DependentUpon>201508221858036_newMigration - Copy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508221921555_newMig - Copy.resx">
-      <DependentUpon>201508221921555_newMig - Copy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508221959033_newMig3 - Copy.resx">
-      <DependentUpon>201508221959033_newMig3 - Copy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508222059263_Initial.resx">
+      <DependentUpon>201508222059263_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
