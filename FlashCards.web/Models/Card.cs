@@ -47,6 +47,8 @@ namespace FlashCards.web.Models
             this.name = name;
             this.description = description;
         }
+
+        public Card() { }
     }
 
     public class CardCreateVM
