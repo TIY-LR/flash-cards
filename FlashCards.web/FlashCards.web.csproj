@@ -214,6 +214,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\cardSetsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -251,6 +252,10 @@
     <Compile Include="Migrations\201508221504563_update2.cs" />
     <Compile Include="Migrations\201508221504563_update2.Designer.cs">
       <DependentUpon>201508221504563_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508221535590_addedCardSetsDb.cs" />
+    <Compile Include="Migrations\201508221535590_addedCardSetsDb.Designer.cs">
+      <DependentUpon>201508221535590_addedCardSetsDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -353,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508221504563_update2.resx">
       <DependentUpon>201508221504563_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508221535590_addedCardSetsDb.resx">
+      <DependentUpon>201508221535590_addedCardSetsDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

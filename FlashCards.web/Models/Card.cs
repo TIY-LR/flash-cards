@@ -14,7 +14,6 @@ namespace FlashCards.web.Models
     public class course
     {
         public Guid id { get; set; }
-        public DateTime createdOn { get; set; }
         public List<cardSet> cardSets { get; set; }
         public string name { get; set; }
         public string description { get; set; }
@@ -24,7 +23,7 @@ namespace FlashCards.web.Models
     {
         public Guid id { get; set; }
         public List<card> cards { get; set; }
-      
+
         public string name { get; set; }
         public string description { get; set; }
     }
@@ -34,10 +33,8 @@ namespace FlashCards.web.Models
         public Guid id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-
-        //tentative
-        public cardSet cardSet { get; set; }
-      
+        public string frontText { get; set; }
+        public string backText { get; set; }
     }
 
 

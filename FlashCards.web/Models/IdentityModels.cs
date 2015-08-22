@@ -31,5 +31,6 @@ namespace FlashCards.web.Models
         }
 
         public System.Data.Entity.DbSet<FlashCards.web.Models.card> Cards { get; set; }
+        public System.Data.Entity.DbSet<FlashCards.web.Models.cardSet> cardSets { get; set; }
     }
 }

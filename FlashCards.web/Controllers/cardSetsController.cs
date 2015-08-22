@@ -7,54 +7,49 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using FlashCards.web.Models;
 
 namespace FlashCards.web.Controllers
 {
-    [EnableCors(origins : "*",headers : "*",methods:"*")]
-    public class CardsController : ApiController
+    public class cardSetsController : ApiController
     {
-      
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Cards
-        [ResponseType(typeof(card))]
-        public IHttpActionResult GetCards()
+        // GET: api/cardSets
+        public IQueryable<cardSet> GetcardSets()
         {
-            return Json(new { cards= db.Cards.ToList()});
+            return db.cardSets;
         }
-        
-        // GET: api/Cards/[id]
-        [ResponseType(typeof(card))]
-        public IHttpActionResult GetCard(Guid id)
+
+        // GET: api/cardSets/5
+        [ResponseType(typeof(cardSet))]
+        public IHttpActionResult GetcardSet(Guid id)
         {
-            card card = db.Cards.Find(id);
-            if (card == null)
+            cardSet cardSet = db.cardSets.Find(id);
+            if (cardSet == null)
             {
                 return NotFound();
             }
 
-            return Ok(card);
+            return Ok(cardSet);
         }
 
-        // PUT: api/Cards/5
+        // PUT: api/cardSets/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCard(Guid id, card Card)
+        public IHttpActionResult PutcardSet(Guid id, cardSet cardSet)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != Card.id)
+            if (id != cardSet.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(Card).State = EntityState.Modified;
+            db.Entry(cardSet).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +57,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CardExists(id))
+                if (!cardSetExists(id))
                 {
                     return NotFound();
                 }
@@ -71,20 +66,20 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-           
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Cards
-        [ResponseType(typeof(card))]
-        public IHttpActionResult PostCard(card Card)
+        // POST: api/cardSets
+        [ResponseType(typeof(cardSet))]
+        public IHttpActionResult PostcardSet(cardSet cardSet)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Cards.Add(Card);
+            db.cardSets.Add(cardSet);
 
             try
             {
@@ -92,7 +87,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CardExists(Card.id))
+                if (cardSetExists(cardSet.id))
                 {
                     return Conflict();
                 }
@@ -101,24 +96,24 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-           
-            return CreatedAtRoute("DefaultApi", new { id = Card.id }, Card);
+
+            return CreatedAtRoute("DefaultApi", new { id = cardSet.id }, cardSet);
         }
 
-        // DELETE: api/Cards/5
-        [ResponseType(typeof(card))]
-        public IHttpActionResult DeleteCard(Guid id)
+        // DELETE: api/cardSets/5
+        [ResponseType(typeof(cardSet))]
+        public IHttpActionResult DeletecardSet(Guid id)
         {
-            card Card = db.Cards.Find(id);
-            if (Card == null)
+            cardSet cardSet = db.cardSets.Find(id);
+            if (cardSet == null)
             {
                 return NotFound();
             }
 
-            db.Cards.Remove(Card);
+            db.cardSets.Remove(cardSet);
             db.SaveChanges();
 
-            return Ok(Card);
+            return Ok(cardSet);
         }
 
         protected override void Dispose(bool disposing)
@@ -130,9 +125,9 @@ namespace FlashCards.web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CardExists(Guid id)
+        private bool cardSetExists(Guid id)
         {
-            return db.Cards.Count(e => e.id == id) > 0;
+            return db.cardSets.Count(e => e.id == id) > 0;
         }
     }
 }
