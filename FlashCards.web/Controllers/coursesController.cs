@@ -17,10 +17,10 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/courses
-       // [ResponseType(typeof(Course))]
-        public IHttpActionResult GetCards()
+        // [ResponseType(typeof(Course))]
+        public IHttpActionResult GetCourse()
         {
-            return Json(new {courses= db.Courses.ToList()});
+            return Json(new RootObjectCourses { Courses = db.Courses.ToList() });
         }
 
         // GET: api/courses/5
