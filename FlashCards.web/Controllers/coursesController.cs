@@ -12,7 +12,7 @@ using FlashCards.web.Models;
 
 namespace FlashCards.web.Controllers
 {
-    public class coursesController : ApiController
+    public class CoursesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -20,7 +20,7 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(Course))]
         public IHttpActionResult GetCards()
         {
-            return Json(new { Courses = db.Courses.ToList() });
+            return Json(db.Courses.ToList());
         }
 
         // GET: api/courses/5
