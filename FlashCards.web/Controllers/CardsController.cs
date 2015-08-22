@@ -21,17 +21,17 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cards
-        [ResponseType(typeof(card))]
+        [ResponseType(typeof(Card))]
         public IHttpActionResult GetCards()
         {
-            return Json(new { cards = db.cards.ToList() });
+            return Json(new { cards = db.Cards.ToList() });
         }
 
         // GET: api/Cards/[id]
-        [ResponseType(typeof(card))]
+        [ResponseType(typeof(Card))]
         public IHttpActionResult GetCard(Guid id)
         {
-            card card = db.cards.Find(id);
+            Card card = db.Cards.Find(id);
             if (card == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace FlashCards.web.Controllers
 
         // PUT: api/Cards/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCard(Guid id, card Card)
+        public IHttpActionResult PutCard(Guid id, Card Card)
         {
             Card.id = new Guid();
             if (!ModelState.IsValid)
@@ -77,8 +77,8 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/Cards
-        [ResponseType(typeof(card))]
-        public IHttpActionResult PostCard(card Card)
+        [ResponseType(typeof(Card))]
+        public IHttpActionResult PostCard(Card Card)
         {
             Card.id = new Guid();
 
@@ -87,7 +87,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.cards.Add(Card);
+            db.Cards.Add(Card);
 
             try
             {
@@ -109,16 +109,16 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/Cards/5
-        [ResponseType(typeof(card))]
+        [ResponseType(typeof(Card))]
         public IHttpActionResult DeleteCard(Guid id)
         {
-            card Card = db.cards.Find(id);
+            Card Card = db.Cards.Find(id);
             if (Card == null)
             {
                 return NotFound();
             }
 
-            db.cards.Remove(Card);
+            db.Cards.Remove(Card);
             db.SaveChanges();
 
             return Ok(Card);
@@ -135,7 +135,7 @@ namespace FlashCards.web.Controllers
 
         private bool CardExists(Guid id)
         {
-            return db.cards.Count(e => e.id == id) > 0;
+            return db.Cards.Count(e => e.id == id) > 0;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
-
+using Newtonsoft.Json;
 namespace FlashCards.web.Models
 {
     public class ResponseData
@@ -22,13 +22,14 @@ namespace FlashCards.web.Models
     public class cardSet
     {
         public Guid id { get; set; }
-        public virtual List<card> cards { get; set; }
+        public virtual List<Card> cards { get; set; }
 
         public string name { get; set; }
         public string description { get; set; }
     }
 
-    public class card
+    [JsonObject (Title="card")]
+    public class Card
     {
         public Guid id { get; set; }
         public string name { get; set; }

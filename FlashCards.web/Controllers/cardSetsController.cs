@@ -19,14 +19,14 @@ namespace FlashCards.web.Controllers
         // GET: api/cardSets
         public IHttpActionResult GetcardSets()
         {
-            return Json(new { cardsets= db.cardSets.ToList()});
+            return Json(new { cardsets= db.CardSets.ToList()});
         }
 
         // GET: api/cardSets/5
         [ResponseType(typeof(cardSet))]
         public IHttpActionResult GetcardSet(Guid id)
         {
-            cardSet cardSet = db.cardSets.Find(id);
+            cardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.cardSets.Add(cardSet);
+            db.CardSets.Add(cardSet);
 
             try
             {
@@ -104,13 +104,13 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(cardSet))]
         public IHttpActionResult DeletecardSet(Guid id)
         {
-            cardSet cardSet = db.cardSets.Find(id);
+            cardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
             {
                 return NotFound();
             }
 
-            db.cardSets.Remove(cardSet);
+            db.CardSets.Remove(cardSet);
             db.SaveChanges();
 
             return Ok(cardSet);
@@ -127,7 +127,7 @@ namespace FlashCards.web.Controllers
 
         private bool cardSetExists(Guid id)
         {
-            return db.cardSets.Count(e => e.id == id) > 0;
+            return db.CardSets.Count(e => e.id == id) > 0;
         }
     }
 }

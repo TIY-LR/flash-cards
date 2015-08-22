@@ -9,7 +9,7 @@ namespace FlashCards.web.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(FlashCards.web.Models.ApplicationDbContext context)

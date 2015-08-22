@@ -30,8 +30,8 @@ namespace FlashCards.web.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<FlashCards.web.Models.card> cards { get; set; }
-        public System.Data.Entity.DbSet<FlashCards.web.Models.cardSet> cardSets { get; set; }
-        public System.Data.Entity.DbSet<FlashCards.web.Models.course> courses { get; set; }
+        public System.Data.Entity.DbSet<FlashCards.web.Models.Card> Cards { get; set; }
+        public System.Data.Entity.DbSet<FlashCards.web.Models.cardSet> CardSets { get; set; }
+        public System.Data.Entity.DbSet<FlashCards.web.Models.course> Courses { get; set; }
     }
 }

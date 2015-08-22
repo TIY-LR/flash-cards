@@ -19,14 +19,14 @@ namespace FlashCards.web.Controllers
         // GET: api/courses
         public IQueryable<course> Getcourses()
         {
-            return db.courses;
+            return db.Courses;
         }
 
         // GET: api/courses/5
         [ResponseType(typeof(course))]
         public IHttpActionResult Getcourse(Guid id)
         {
-            course course = db.courses.Find(id);
+            course course = db.Courses.Find(id);
             if (course == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.courses.Add(course);
+            db.Courses.Add(course);
 
             try
             {
@@ -104,13 +104,13 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(course))]
         public IHttpActionResult Deletecourse(Guid id)
         {
-            course course = db.courses.Find(id);
+            course course = db.Courses.Find(id);
             if (course == null)
             {
                 return NotFound();
             }
 
-            db.courses.Remove(course);
+            db.Courses.Remove(course);
             db.SaveChanges();
 
             return Ok(course);
@@ -127,7 +127,7 @@ namespace FlashCards.web.Controllers
 
         private bool courseExists(Guid id)
         {
-            return db.courses.Count(e => e.id == id) > 0;
+            return db.Courses.Count(e => e.id == id) > 0;
         }
     }
 }
