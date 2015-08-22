@@ -24,7 +24,7 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(card))]
         public IHttpActionResult GetCards()
         {
-            return Json(db.Cards.ToList());
+            return Json(new { cards= db.Cards.ToList()});
         }
         
         // GET: api/Cards/5
