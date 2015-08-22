@@ -36,6 +36,18 @@ namespace FlashCards.web.Models
         public string description { get; set; }
         public string frontText { get; set; }
         public string backText { get; set; }
+
+        public Card(string name, string description)
+        {
+            this.name = name;
+            this.description = description;
+        }
+    }
+
+    public class CardCreateVM
+    {
+        public string name { get; set; }
+        public string description { get; set; }
     }
 
 

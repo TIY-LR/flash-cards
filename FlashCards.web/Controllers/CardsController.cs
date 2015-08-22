@@ -78,16 +78,16 @@ namespace FlashCards.web.Controllers
 
         // POST: api/Cards
         [ResponseType(typeof(Card))]
-        public IHttpActionResult PostCard(Card Card)
+        public IHttpActionResult PostCard(CardCreateVM _card)
         {
-            Card.id = new Guid();
+            Card newCard = new Card(_card.name, _card.description) {id = new Guid()};
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Cards.Add(Card);
+            db.Cards.Add(newCard);
 
             try
             {
@@ -95,7 +95,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CardExists(Card.id))
+                if (CardExists(newCard.id))
                 {
                     return Conflict();
                 }
@@ -105,7 +105,7 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = Card.id }, Card);
+            return CreatedAtRoute("DefaultApi", new { id = newCard.id }, newCard);
         }
 
         // DELETE: api/Cards/5
