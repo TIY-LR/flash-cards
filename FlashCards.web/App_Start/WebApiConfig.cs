@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -15,7 +16,7 @@ namespace FlashCards.web
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.EnableCors();
+            config.EnableCors(new EnableCorsAttribute("*", "*","*"));
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 

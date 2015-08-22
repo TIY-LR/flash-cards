@@ -8,7 +8,7 @@ namespace FlashCards.web.Models
 {
     public class RootObjectCourses
     {
-        public List<Course> Courses { get; set; }
+        public  object Courses { get; set; }
     }
 
     public class Course
@@ -20,7 +20,7 @@ namespace FlashCards.web.Models
 
     public class CardSet
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public Course Course { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -29,7 +29,7 @@ namespace FlashCards.web.Models
 
     public class Card
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string FrontText { get; set; }
         public string BackText { get; set; }
         public CardSet CardSet { get; set; }

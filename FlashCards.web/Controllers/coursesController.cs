@@ -18,14 +18,29 @@ namespace FlashCards.web.Controllers
 
         // GET: api/courses
         // [ResponseType(typeof(Course))]
-        public IHttpActionResult GetCourse()
+        public object GetCourse()
         {
-            return Json(new RootObjectCourses { Courses = db.Courses.ToList() });
+            return Json(new RootObjectCourses
+            {
+                Courses =
+                db.Courses.Select(c => new
+                {
+                    c.Id,
+                    c.Name,
+                    CardSets =
+                    c.CardSets.Select(cs => new
+                    {
+                        cs.Name,
+                        cs.Description,
+                        cs.Id
+                    })
+                }).ToList()
+            });
         }
 
         // GET: api/courses/5
         [ResponseType(typeof(Course))]
-        public IHttpActionResult GetCourse(Guid id)
+        public IHttpActionResult GetCourse(int id)
         {
             Course course = db.Courses.Find(id);
             if (course == null)

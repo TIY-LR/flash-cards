@@ -13,7 +13,6 @@ using FlashCards.web.Models;
 
 namespace FlashCards.web.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CardsController : ApiController
     {
 
@@ -49,7 +48,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != Card.id)
+            if (id != Card.Id)
             {
                 return BadRequest();
             }
@@ -94,7 +93,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CardExists(newCard.id))
+                if (CardExists(newCard.Id))
                 {
                     return Conflict();
                 }
@@ -104,7 +103,7 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = newCard.id }, newCard);
+            return CreatedAtRoute("DefaultApi", new { id = newCard.Id }, newCard);
         }
 
         // DELETE: api/Cards/5
@@ -134,7 +133,7 @@ namespace FlashCards.web.Controllers
 
         private bool CardExists(int id)
         {
-            return db.Cards.Count(e => e.id == id) > 0;
+            return db.Cards.Count(e => e.Id == id) > 0;
         }
     }
 }
