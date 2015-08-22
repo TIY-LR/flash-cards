@@ -7,6 +7,7 @@ namespace FlashCards.web.Migrations
     {
         public override void Up()
         {
+            DropTable("dbo.Cards");
             CreateTable(
                 "dbo.cards",
                 c => new
@@ -34,7 +35,7 @@ namespace FlashCards.web.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.creator_Id)
                 .Index(t => t.creator_Id);
             
-            DropTable("dbo.Cards");
+           
         }
         
         public override void Down()
