@@ -24,14 +24,14 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(card))]
         public IHttpActionResult GetCards()
         {
-            return Json(new { cards= db.Cards.ToList()});
+            return Json(new { cards= db.cards.ToList()});
         }
         
         // GET: api/Cards/[id]
         [ResponseType(typeof(card))]
         public IHttpActionResult GetCard(Guid id)
         {
-            card card = db.Cards.Find(id);
+            card card = db.cards.Find(id);
             if (card == null)
             {
                 return NotFound();
@@ -84,7 +84,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Cards.Add(Card);
+            db.cards.Add(Card);
 
             try
             {
@@ -109,13 +109,13 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(card))]
         public IHttpActionResult DeleteCard(Guid id)
         {
-            card Card = db.Cards.Find(id);
+            card Card = db.cards.Find(id);
             if (Card == null)
             {
                 return NotFound();
             }
 
-            db.Cards.Remove(Card);
+            db.cards.Remove(Card);
             db.SaveChanges();
 
             return Ok(Card);
@@ -132,7 +132,7 @@ namespace FlashCards.web.Controllers
 
         private bool CardExists(Guid id)
         {
-            return db.Cards.Count(e => e.id == id) > 0;
+            return db.cards.Count(e => e.id == id) > 0;
         }
     }
 }
