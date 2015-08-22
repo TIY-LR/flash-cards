@@ -44,6 +44,7 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCard(Guid id, card Card)
         {
+            Card.id = new Guid();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
