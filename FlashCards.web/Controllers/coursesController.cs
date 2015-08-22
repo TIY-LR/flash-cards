@@ -17,16 +17,16 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/courses
-        public IQueryable<course> Getcourses()
+        public IQueryable<Course> Getcourses()
         {
             return db.Courses;
         }
 
         // GET: api/courses/5
-        [ResponseType(typeof(course))]
+        [ResponseType(typeof(Course))]
         public IHttpActionResult Getcourse(Guid id)
         {
-            course course = db.Courses.Find(id);
+            Course course = db.Courses.Find(id);
             if (course == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace FlashCards.web.Controllers
 
         // PUT: api/courses/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putcourse(Guid id, course course)
+        public IHttpActionResult Putcourse(Guid id, Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -71,15 +71,22 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/courses
-        [ResponseType(typeof(course))]
-        public IHttpActionResult Postcourse(course course)
+        [ResponseType(typeof(Course))]
+        public IHttpActionResult Postcourse(CourseVM course)
         {
+            Course newCourse = new Course
+            {
+                id = Guid.NewGuid(),
+                name = course.name,
+                description = course.description
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Courses.Add(course);
+            db.Courses.Add(newCourse);
 
             try
             {
@@ -87,7 +94,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (courseExists(course.id))
+                if (courseExists(newCourse.id))
                 {
                     return Conflict();
                 }
@@ -97,14 +104,14 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = course.id }, course);
+            return CreatedAtRoute("DefaultApi", new { id = newCourse.id }, course);
         }
 
         // DELETE: api/courses/5
-        [ResponseType(typeof(course))]
+        [ResponseType(typeof(Course))]
         public IHttpActionResult Deletecourse(Guid id)
         {
-            course course = db.Courses.Find(id);
+            Course course = db.Courses.Find(id);
             if (course == null)
             {
                 return NotFound();
