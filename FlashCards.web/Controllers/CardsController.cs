@@ -16,22 +16,22 @@ namespace FlashCards.web.Controllers
     [EnableCors(origins : "*",headers : "*",methods:"*")]
     public class CardsController : ApiController
     {
-        public Logging Logger { get; set; }
+      
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cards
-        [ResponseType(typeof(Card))]
+        [ResponseType(typeof(card))]
         public IHttpActionResult GetCards()
         {
             return Json(db.Cards.ToList());
         }
         
         // GET: api/Cards/5
-        [ResponseType(typeof(Card))]
+        [ResponseType(typeof(card))]
         public IHttpActionResult GetCard(Guid id)
         {
-            Card Card = db.Cards.Find(id);
+            card Card = db.Cards.Find(id);
             if (Card == null)
             {
                 return NotFound();
@@ -42,7 +42,7 @@ namespace FlashCards.web.Controllers
 
         // PUT: api/Cards/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCard(Guid id, Card Card)
+        public IHttpActionResult PutCard(Guid id, card Card)
         {
             if (!ModelState.IsValid)
             {
@@ -71,13 +71,13 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-            Logger.Log("Post hit!");
+           
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Cards
-        [ResponseType(typeof(Card))]
-        public IHttpActionResult PostCard(Card Card)
+        [ResponseType(typeof(card))]
+        public IHttpActionResult PostCard(card Card)
         {
             if (!ModelState.IsValid)
             {
@@ -106,10 +106,10 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/Cards/5
-        [ResponseType(typeof(Card))]
+        [ResponseType(typeof(card))]
         public IHttpActionResult DeleteCard(Guid id)
         {
-            Card Card = db.Cards.Find(id);
+            card Card = db.Cards.Find(id);
             if (Card == null)
             {
                 return NotFound();

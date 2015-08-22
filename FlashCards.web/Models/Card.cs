@@ -11,35 +11,34 @@ namespace FlashCards.web.Models
 
     }
 
-    public class Course
+    public class course
     {
         public Guid id { get; set; }
         public ApplicationUser creator { get; set; }
         public DateTime createdOn { get; set; }
-        public List<CardSet> cardSets { get; set; }
+        public List<cardSet> cardSets { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        
     }
 
-    public class CardSet
+    public class cardSet
     {
         public Guid id { get; set; }
-        public List<Card> cards { get; set; }
+        public List<card> cards { get; set; }
         public ApplicationUser creator { get; set; }
 
         public string name { get; set; }
         public string description { get; set; }
     }
 
-    public class Card
+    public class card
     {
         public Guid id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
 
         //tentative
-        public Guid cardSetId { get; set; }
+        public cardSet cardSet { get; set; }
         public Guid creatorId { get; set; }
     }
 
