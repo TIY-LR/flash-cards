@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FlashCards.web.Models
 {
-    public class TestModel
+    public class Card
     {
         public Guid Id { get; set; }
         public string Description { get; set; }
