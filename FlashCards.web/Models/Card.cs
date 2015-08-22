@@ -11,20 +11,20 @@ namespace FlashCards.web.Models
 
     }
 
+    [JsonObject(Title = "course")]
     public class Course
     {
         public Guid id { get; set; }
-        public virtual List<cardSet> cardSets { get; set; }
+        public virtual List<CardSet> cardSets { get; set; }
         public string name { get; set; }
         public string description { get; set; }
     }
-
     public class CourseVM
     {
         public string name { get; set; }
         public string description { get; set; }
     }
-    public class cardSet
+    public class CardSet
     {
         public Guid id { get; set; }
         public virtual List<Card> cards { get; set; }

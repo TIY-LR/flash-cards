@@ -19,14 +19,14 @@ namespace FlashCards.web.Controllers
         // GET: api/cardSets
         public IHttpActionResult GetcardSets()
         {
-            return Json(new { cardsets= db.CardSets.ToList()});
+            return Json(new { cardSets= db.CardSets.ToList()});
         }
 
         // GET: api/cardSets/5
-        [ResponseType(typeof(cardSet))]
+        [ResponseType(typeof(CardSet))]
         public IHttpActionResult GetcardSet(Guid id)
         {
-            cardSet cardSet = db.CardSets.Find(id);
+            CardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace FlashCards.web.Controllers
 
         // PUT: api/cardSets/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutcardSet(Guid id, cardSet cardSet)
+        public IHttpActionResult PutcardSet(Guid id, CardSet cardSet)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +71,8 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/cardSets
-        [ResponseType(typeof(cardSet))]
-        public IHttpActionResult PostcardSet(cardSet cardSet)
+        [ResponseType(typeof(CardSet))]
+        public IHttpActionResult PostcardSet(CardSet cardSet)
         {
             if (!ModelState.IsValid)
             {
@@ -101,10 +101,10 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/cardSets/5
-        [ResponseType(typeof(cardSet))]
+        [ResponseType(typeof(CardSet))]
         public IHttpActionResult DeletecardSet(Guid id)
         {
-            cardSet cardSet = db.CardSets.Find(id);
+            CardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
             {
                 return NotFound();
