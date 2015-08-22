@@ -29,5 +29,7 @@ namespace FlashCards.web.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FlashCards.web.Models.TestModel> TestModels { get; set; }
     }
 }
