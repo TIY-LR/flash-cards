@@ -11,6 +11,11 @@ namespace FlashCards.web.Models
         public  object Courses { get; set; }
     }
 
+    public class RootObjectCourse
+    {
+        public object Course { get; set; }
+    }
+
     public class Course
     {
         public int Id { get; set; }
@@ -33,6 +38,5 @@ namespace FlashCards.web.Models
         public string FrontText { get; set; }
         public string BackText { get; set; }
         public CardSet CardSet { get; set; }
-       
-    }
+       }
 }

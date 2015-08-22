@@ -20,7 +20,7 @@ namespace FlashCards.web.Controllers
         // [ResponseType(typeof(Course))]
         public object GetCourse()
         {
-            return Json(new RootObjectCourses
+            return new RootObjectCourses
             {
                 Courses =
                 db.Courses.Select(c => new
@@ -28,19 +28,14 @@ namespace FlashCards.web.Controllers
                     c.Id,
                     c.Name,
                     CardSets =
-                    c.CardSets.Select(cs => new
-                    {
-                        cs.Name,
-                        cs.Description,
-                        cs.Id
-                    })
+                    c.CardSets.Select(cs => cs.Id)
                 }).ToList()
-            });
+            };
         }
 
         // GET: api/courses/5
-        [ResponseType(typeof(Course))]
-        public IHttpActionResult GetCourse(int id)
+        //[ResponseType(typeof(Course))]
+        public object GetCourse(int id)
         {
             Course course = db.Courses.Find(id);
             if (course == null)
@@ -48,7 +43,10 @@ namespace FlashCards.web.Controllers
                 return NotFound();
             }
 
-            return Ok(course);
+            return new RootObjectCourse
+            {
+                Course = course
+            };
         }
 
         // PUT: api/courses/5
