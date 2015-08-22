@@ -20,7 +20,7 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(Course))]
         public IHttpActionResult GetCards()
         {
-            return Json(db.Courses.ToList());
+            return Json(new {Courses= db.Courses.ToList()});
         }
 
         // GET: api/courses/5
