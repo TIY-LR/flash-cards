@@ -13,10 +13,10 @@ using FlashCards.web.Models;
 
 namespace FlashCards.web.Controllers
 {
-    [EnableCors(origins : "*",headers : "*",methods:"*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CardsController : ApiController
     {
-      
+
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -24,9 +24,9 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(card))]
         public IHttpActionResult GetCards()
         {
-            return Json(new { cards= db.cards.ToList()});
+            return Json(new { cards = db.cards.ToList() });
         }
-        
+
         // GET: api/Cards/[id]
         [ResponseType(typeof(card))]
         public IHttpActionResult GetCard(Guid id)
@@ -71,7 +71,7 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-           
+
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -79,6 +79,8 @@ namespace FlashCards.web.Controllers
         [ResponseType(typeof(card))]
         public IHttpActionResult PostCard(card Card)
         {
+            Card.id = new Guid();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -101,7 +103,7 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-           
+
             return CreatedAtRoute("DefaultApi", new { id = Card.id }, Card);
         }
 
