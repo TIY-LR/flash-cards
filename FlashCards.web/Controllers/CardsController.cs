@@ -49,7 +49,7 @@ namespace FlashCards.web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != Card.Id)
+            if (id != Card.id)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CardExists(Card.Id))
+                if (CardExists(Card.id))
                 {
                     return Conflict();
                 }
@@ -102,7 +102,7 @@ namespace FlashCards.web.Controllers
                 }
             }
            
-            return CreatedAtRoute("DefaultApi", new { id = Card.Id }, Card);
+            return CreatedAtRoute("DefaultApi", new { id = Card.id }, Card);
         }
 
         // DELETE: api/Cards/5
@@ -132,7 +132,7 @@ namespace FlashCards.web.Controllers
 
         private bool CardExists(Guid id)
         {
-            return db.Cards.Count(e => e.Id == id) > 0;
+            return db.Cards.Count(e => e.id == id) > 0;
         }
     }
 }

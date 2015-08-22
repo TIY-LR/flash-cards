@@ -236,6 +236,14 @@
     <Compile Include="Migrations\201508220353554_newMigration.Designer.cs">
       <DependentUpon>201508220353554_newMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508220431278_AddedNameToCardModel.cs" />
+    <Compile Include="Migrations\201508220431278_AddedNameToCardModel.Designer.cs">
+      <DependentUpon>201508220431278_AddedNameToCardModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508221412117_updatedModelsToCamelCase.cs" />
+    <Compile Include="Migrations\201508221412117_updatedModelsToCamelCase.Designer.cs">
+      <DependentUpon>201508221412117_updatedModelsToCamelCase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -325,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508220353554_newMigration.resx">
       <DependentUpon>201508220353554_newMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508220431278_AddedNameToCardModel.resx">
+      <DependentUpon>201508220431278_AddedNameToCardModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508221412117_updatedModelsToCamelCase.resx">
+      <DependentUpon>201508221412117_updatedModelsToCamelCase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
