@@ -5,6 +5,10 @@ using System.Web;
 
 namespace FlashCards.web.Models
 {
+    public class ResponseData
+    {
+        
+    }
     public class Card
     {
         public Guid Id { get; set; }

@@ -228,6 +228,14 @@
     <Compile Include="Migrations\201508220215325_AddedTestModel.Designer.cs">
       <DependentUpon>201508220215325_AddedTestModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508220311213_renamedTestModal.cs" />
+    <Compile Include="Migrations\201508220311213_renamedTestModal.Designer.cs">
+      <DependentUpon>201508220311213_renamedTestModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508220353554_newMigration.cs" />
+    <Compile Include="Migrations\201508220353554_newMigration.Designer.cs">
+      <DependentUpon>201508220353554_newMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -237,6 +245,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -310,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508220215325_AddedTestModel.resx">
       <DependentUpon>201508220215325_AddedTestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508220311213_renamedTestModal.resx">
+      <DependentUpon>201508220311213_renamedTestModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508220353554_newMigration.resx">
+      <DependentUpon>201508220353554_newMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

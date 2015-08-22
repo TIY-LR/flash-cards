@@ -16,12 +16,14 @@ namespace FlashCards.web.Controllers
     [EnableCors(origins : "*",headers : "*",methods:"*")]
     public class CardsController : ApiController
     {
+        public Logging Logger { get; set; }
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cards
-        public IQueryable<Card> GetCards()
-        {
-            return db.Cards;
+        public List<Card> GetCards()
+        {Logger.Log("Index listed");
+            return db.Cards.ToList();
         }
         
         // GET: api/Cards/5
@@ -68,7 +70,7 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-
+            Logger.Log("Post hit!");
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -98,7 +100,7 @@ namespace FlashCards.web.Controllers
                     throw;
                 }
             }
-
+           
             return CreatedAtRoute("DefaultApi", new { id = Card.Id }, Card);
         }
 
