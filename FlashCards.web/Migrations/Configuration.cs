@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FlashCards.web.Models;
 
 namespace FlashCards.web.Migrations
@@ -21,14 +22,6 @@ namespace FlashCards.web.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-
-            context.Courses.AddOrUpdate(
-                c=> c.name,
-                new Course { id=Guid.NewGuid(),name = ".NET",description = ".Net course"},
-                new Course { id=Guid.NewGuid(), name = "Front End", description =  "Front end engineering"}
-                
-                
-                );
             //    context.People.AddOrUpdate(
             //      p => p.FullName,
             //      new Person { FullName = "Andrew Peters" },
@@ -36,6 +29,28 @@ namespace FlashCards.web.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Courses.AddOrUpdate(x => x.Name,
+                new Course() { Name = "Dot Net" },
+                new Course()
+                {
+                    Name = "Front End",
+
+                    CardSets = new List<CardSet>()
+                    {
+                        new CardSet() {
+                        Description = "javascript desc",
+                        Name = "javascript",
+                        Cards = new List<Card>()
+                            {
+                                new Card() {FrontText = "What is Javascript??", BackText = "A way to make stuff"}
+                            }
+                        }
+
+                    },
+
+                }
+             );
         }
     }
 }

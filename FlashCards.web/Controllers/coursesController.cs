@@ -25,7 +25,7 @@ namespace FlashCards.web.Controllers
 
         // GET: api/courses/5
         [ResponseType(typeof(Course))]
-        public IHttpActionResult Getcourse(Guid id)
+        public IHttpActionResult GetCourse(Guid id)
         {
             Course course = db.Courses.Find(id);
             if (course == null)
@@ -38,14 +38,14 @@ namespace FlashCards.web.Controllers
 
         // PUT: api/courses/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putcourse(Guid id, Course course)
+        public IHttpActionResult PutCourse(int id, Course course)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != course.id)
+            if (id != course.Id)
             {
                 return BadRequest();
             }
@@ -73,13 +73,11 @@ namespace FlashCards.web.Controllers
 
         // POST: api/courses
         [ResponseType(typeof(Course))]
-        public IHttpActionResult Postcourse(Course course)
+        public IHttpActionResult Postcourse(CourseVM course)
         {
             Course newCourse = new Course
             {
-                id = Guid.NewGuid(),
-                name = course.name,
-                description = course.description
+                Name = course.Name,
             };
 
             if (!ModelState.IsValid)
@@ -95,7 +93,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (courseExists(newCourse.id))
+                if (courseExists(newCourse.Id))
                 {
                     return Conflict();
                 }
@@ -105,7 +103,7 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = newCourse.id }, course);
+            return CreatedAtRoute("DefaultApi", new { id = newCourse.Id }, course);
         }
 
         // DELETE: api/courses/5
@@ -133,9 +131,9 @@ namespace FlashCards.web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool courseExists(Guid id)
+        private bool courseExists(int id)
         {
-            return db.Courses.Count(e => e.id == id) > 0;
+            return db.Courses.Count(e => e.Id == id) > 0;
         }
     }
 }

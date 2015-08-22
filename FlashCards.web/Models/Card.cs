@@ -13,61 +13,26 @@ namespace FlashCards.web.Models
 
     public class Course
     {
-        public Guid id { get; set; }
-      
-        public string name { get; set; }
-        public string description { get; set; }
+        public int Id { get; set; }
+        public virtual List<CardSet> CardSets { get; set; }
+        public string Name { get; set; }
     }
 
-    //public class CourseVM
-    //{
-        
-    //    public string name { get; set; }
-    //    public string description { get; set; }
-    //}
-
-    public class RootObjectCardSet
-    {
-        public List<CardSet> CardSets { get; set; }
-    }
     public class CardSet
     {
-        public Guid id { get; set; }
-        public Course course { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public int id { get; set; }
+        public Course Course { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public virtual List<Card> Cards { get; set; } 
     }
 
-    //public class CardSetVM
-    //{
-       
-    //    public string name { get; set; }
-    //    public string description { get; set; }
-    //}
-
-    [JsonObject(Title = "card")]
     public class Card
     {
-        public Guid id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string frontText { get; set; }
-        public string backText { get; set; }
+        public int id { get; set; }
+        public string FrontText { get; set; }
+        public string BackText { get; set; }
         public CardSet CardSet { get; set; }
-        //public Card(string name, string description)
-        //{
-        //    this.name = name;
-        //    this.description = description;
-        //}
-
-        public Card() { }
+       
     }
-
-    //public class CardCreateVM
-    //{
-    //    public string name { get; set; }
-    //    public string description { get; set; }
-    //}
-
-
 }
