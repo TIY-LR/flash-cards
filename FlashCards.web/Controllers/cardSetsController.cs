@@ -24,9 +24,10 @@ namespace FlashCards.web.Controllers
             {
                 CardSets =
                db.CardSets.Select(cs => new
-               {   cs.Id,
+               {
+                   cs.Id,
                    cs.Name,
-                   CourseName= cs.Course.Name,
+                   CourseName = cs.Course.Name,
                    Cards = cs.Cards.Select(c => c.Id)
                }).ToList()
             };
@@ -34,16 +35,19 @@ namespace FlashCards.web.Controllers
         }
 
         // GET: api/cardSets/5
-        [ResponseType(typeof(CardSet))]
-        public IHttpActionResult GetcardSet(int id)
+    
+        public object GetcardSet(int id)
         {
-            CardSet cardSet = db.CardSets.Find(id);
-            if (cardSet == null)
+            return new RootObjectCardSet
             {
-                return NotFound();
-            }
-
-            return Ok(cardSet);
+                CardSet =
+                    db.CardSets.Select(cs => new
+                    {
+                        cs.Id,
+                        cs.Name,
+                        CourseId = cs.Course.Id
+                    }).ToList()
+            };
         }
 
         // PUT: api/cardSets/5

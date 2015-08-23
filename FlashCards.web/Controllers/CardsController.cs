@@ -39,40 +39,40 @@ namespace FlashCards.web.Controllers
             return Ok(card);
         }
 
-        // PUT: api/Cards/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutCard(int id, Card Card)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Cards/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutCard(int id, Card Card)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != Card.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != Card.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(Card).State = EntityState.Modified;
+        //    db.Entry(Card).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CardExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CardExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/Cards
         [ResponseType(typeof(Card))]

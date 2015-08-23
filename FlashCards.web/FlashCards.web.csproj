@@ -235,6 +235,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CardCreateVM.cs" />
     <Compile Include="Models\CardSetVM.cs" />
+    <Compile Include="Models\CardVM.cs" />
     <Compile Include="Models\CourseVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Card.cs" />
