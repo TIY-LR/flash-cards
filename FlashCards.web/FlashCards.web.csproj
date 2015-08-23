@@ -228,6 +228,10 @@
     <Compile Include="Migrations\201508222237322_ColumnTweaks.Designer.cs">
       <DependentUpon>201508222237322_ColumnTweaks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508231629408_CascadeDeleteCourse.cs" />
+    <Compile Include="Migrations\201508231629408_CascadeDeleteCourse.Designer.cs">
+      <DependentUpon>201508231629408_CascadeDeleteCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508222237322_ColumnTweaks.resx">
       <DependentUpon>201508222237322_ColumnTweaks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508231629408_CascadeDeleteCourse.resx">
+      <DependentUpon>201508231629408_CascadeDeleteCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

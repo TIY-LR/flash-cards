@@ -17,7 +17,7 @@ namespace FlashCards.web
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.EnableCors(new EnableCorsAttribute("*", "*","*"));
-
+           
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

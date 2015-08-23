@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Data.Entity;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -24,7 +25,22 @@ namespace FlashCards.web.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Course>()
+                .HasMany(c => c.CardSets)
+                .WithRequired(cs=>cs.Course)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<CardSet>()
+               .HasMany(c => c.Cards)
+               .WithRequired(cs => cs.CardSet)
+               .WillCascadeOnDelete(true);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
