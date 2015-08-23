@@ -22,11 +22,11 @@ namespace FlashCards.web.Controllers
         {
             return new RootObjectCardSets
             {
-                CardSets = 
-               db.CardSets.Select(cs=> new
-               {
-                   cs.Id,
+                CardSets =
+               db.CardSets.Select(cs => new
+               {   cs.Id,
                    cs.Name,
+                   CourseName= cs.Course.Name,
                    Cards = cs.Cards.Select(c => c.Id)
                }).ToList()
             };
@@ -35,7 +35,7 @@ namespace FlashCards.web.Controllers
 
         // GET: api/cardSets/5
         [ResponseType(typeof(CardSet))]
-        public IHttpActionResult GetcardSet(Guid id)
+        public IHttpActionResult GetcardSet(int id)
         {
             CardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
@@ -82,15 +82,21 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/cardSets
-        [ResponseType(typeof(CardSet))]
-        public IHttpActionResult PostcardSet(CardSet cardSet)
+
+        public IHttpActionResult PostcardSet(CardSetEmberWrapper cardSet)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CardSets.Add(cardSet);
+            CardSet newCardSet = new CardSet
+            {
+                Name = cardSet.CardSet.Name,
+                Course = db.Courses.Find(cardSet.CardSet.CourseId)
+
+            };
+            db.CardSets.Add(newCardSet);
 
             try
             {
@@ -98,7 +104,7 @@ namespace FlashCards.web.Controllers
             }
             catch (DbUpdateException)
             {
-                if (cardSetExists(cardSet.Id))
+                if (cardSetExists(newCardSet.Id))
                 {
                     return Conflict();
                 }
@@ -108,11 +114,10 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = cardSet.Id }, cardSet);
+            return Ok(new { cardSet = newCardSet });
         }
 
         // DELETE: api/cardSets/5
-        [ResponseType(typeof(CardSet))]
         public IHttpActionResult DeletecardSet(Guid id)
         {
             CardSet cardSet = db.CardSets.Find(id);
