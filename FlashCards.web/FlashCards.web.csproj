@@ -233,17 +233,15 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CardCreateVM.cs" />
-    <Compile Include="Models\CardSetVM.cs" />
-    <Compile Include="Models\CardVM.cs" />
-    <Compile Include="Models\CourseVM.cs" />
+    <Compile Include="Models\CardSet.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\EmberWrapper.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

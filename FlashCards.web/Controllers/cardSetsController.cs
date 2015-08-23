@@ -51,44 +51,8 @@ namespace FlashCards.web.Controllers
             };
         }
 
-        // PUT: api/cardSets/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutcardSet(int id, CardSet cardSet)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != cardSet.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(cardSet).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!cardSetExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // POST: api/cardSets
-
-        public IHttpActionResult PostcardSet(CardSetEmberWrapper cardSet)
+        public IHttpActionResult PostcardSet(EmberWrapper cardSet)
         {
             if (!ModelState.IsValid)
             {
