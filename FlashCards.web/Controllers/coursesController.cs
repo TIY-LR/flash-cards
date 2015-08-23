@@ -85,18 +85,19 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/courses
-        [ResponseType(typeof(Course))]
-        public IHttpActionResult Postcourse(CourseVM course)
+        public IHttpActionResult Postcourse(EmberWrapper course)
         {
-            Course newCourse = new Course
-            {
-                Name = course.Name,
-            };
+
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            Course newCourse = new Course
+            {
+                Name = course.course.Name,
+            };
 
             db.Courses.Add(newCourse);
 
@@ -116,7 +117,7 @@ namespace FlashCards.web.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = newCourse.Id }, course);
+            return Ok(new { course = newCourse });
         }
 
         // DELETE: api/courses/5

@@ -23,6 +23,16 @@ namespace FlashCards.web.Models
         public string Name { get; set; }
     }
 
+    public class RootObjectCardSets
+    {
+        public object CardSets { get; set; }
+    }
+
+    public class RootObjectCardSet
+    {
+        public object CardSet { get; set; }
+    }
+
     public class CardSet
     {
         public int Id { get; set; }

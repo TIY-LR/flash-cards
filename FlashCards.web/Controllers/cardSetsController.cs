@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using FlashCards.web.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace FlashCards.web.Controllers
 {
@@ -17,9 +18,19 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/cardSets
-        public IHttpActionResult GetcardSets()
+        public object GetcardSets()
         {
-            return Json(new { CardSets = db.CardSets.ToList() });
+            return new RootObjectCardSets
+            {
+                CardSets = 
+               db.CardSets.Select(cs=> new
+               {
+                   cs.Id,
+                   cs.Name,
+                   Cards = cs.Cards.Select(c => c.Id)
+               }).ToList()
+            };
+
         }
 
         // GET: api/cardSets/5

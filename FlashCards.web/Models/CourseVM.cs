@@ -2,9 +2,12 @@
 
 namespace FlashCards.web.Models
 {
+    public class EmberWrapper
+    {
+        public CourseVM course { get; set; }
+    }
     public class CourseVM
     {
-        public List<CardSet> Cards { get; set; }
-        public string Name { get; set; }
+       public string Name { get; set; }
     }
 }
