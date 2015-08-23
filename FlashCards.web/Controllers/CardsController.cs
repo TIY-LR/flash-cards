@@ -65,16 +65,16 @@ namespace FlashCards.web.Controllers
         // DELETE: api/Cards/5
         public IHttpActionResult DeleteCard(int id)
         {
-            var Card = db.Cards.Find(id);
-            if (Card == null)
+            var card = db.Cards.Find(id);
+            if (card == null)
             {
                 return NotFound();
             }
 
-            db.Cards.Remove(Card);
+            db.Cards.Remove(card);
             db.SaveChanges();
 
-            return Ok(Card);
+            return Ok(card);
         }
 
         protected override void Dispose(bool disposing)
