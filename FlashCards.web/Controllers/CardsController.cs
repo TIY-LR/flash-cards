@@ -117,9 +117,9 @@ namespace FlashCards.web.Controllers
             }
         }
 
-        card.CardId = newCard.Id;
+       // card.CardId = newCard.Id;
 
-        return new { card = card };
+        return new { card = newCard };
     }
 
     // DELETE: api/Cards/5
