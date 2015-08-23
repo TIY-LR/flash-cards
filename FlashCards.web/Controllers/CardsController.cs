@@ -96,7 +96,7 @@ namespace FlashCards.web.Controllers
 
         var existingCardSet = db.CardSets.Find(card.CardSetId);
 
-        Card newCard = new Card() { FrontText = card.FrontText, BackText = card.BackText, CardSet = existingCardSet };
+        Card newCard = new Card { FrontText = card.FrontText, BackText = card.BackText, CardSet = existingCardSet };
 
 
         db.Cards.Add(newCard);
