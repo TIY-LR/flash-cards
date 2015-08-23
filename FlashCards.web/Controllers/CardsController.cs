@@ -88,12 +88,16 @@ namespace FlashCards.web.Controllers
 
     public object PostCard(CardCreateVM card)
     {
-        Card newCard = new Card() { FrontText = card.FrontText, BackText = card.BackText };
-
+           
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+
+        var existingCardSet = db.CardSets.Find(card.CardSetId);
+
+        Card newCard = new Card() { FrontText = card.FrontText, BackText = card.BackText, CardSet = existingCardSet };
+
 
         db.Cards.Add(newCard);
 
@@ -113,7 +117,9 @@ namespace FlashCards.web.Controllers
             }
         }
 
-        return new { card = newCard };
+        card.CardId = newCard.Id;
+
+        return new { card = card };
     }
 
     // DELETE: api/Cards/5
