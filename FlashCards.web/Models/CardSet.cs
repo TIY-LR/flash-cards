@@ -13,6 +13,7 @@ namespace FlashCards.web.Models
 
     public class CardSetVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int Course { get; set; }
     }

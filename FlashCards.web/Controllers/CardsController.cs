@@ -57,6 +57,7 @@ namespace FlashCards.web.Controllers
             db.SaveChanges();
 
             wrappedCard.Card.CardSet = newCard.CardSet.Id;
+            wrappedCard.Card.Id = newCard.Id;
 
             return new { card = wrappedCard.Card };
         }

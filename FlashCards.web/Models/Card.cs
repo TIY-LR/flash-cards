@@ -10,6 +10,7 @@
 
     public class CardVM
     {
+        public int Id { get; set; }
         public string FrontText { get; set; }
         public string BackText { get; set; }
         public int CardSet { get; set; }
