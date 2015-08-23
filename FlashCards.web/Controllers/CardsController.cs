@@ -63,7 +63,7 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/Cards/5
-        public IHttpActionResult DeleteCard(Guid id)
+        public IHttpActionResult DeleteCard(int id)
         {
             var Card = db.Cards.Find(id);
             if (Card == null)

@@ -50,41 +50,7 @@ namespace FlashCards.web.Controllers
             };
         }
 
-        // PUT: api/courses/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutCourse(int id, Course course)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != course.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(course).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!courseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
+     
         // POST: api/courses
         public IHttpActionResult Postcourse(EmberWrapper course)
         {
@@ -121,8 +87,8 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/courses/5
-        [ResponseType(typeof(Course))]
-        public IHttpActionResult Deletecourse(Guid id)
+       
+        public IHttpActionResult Deletecourse(int id)
         {
             Course course = db.Courses.Find(id);
             if (course == null)

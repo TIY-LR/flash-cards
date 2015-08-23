@@ -75,7 +75,7 @@ namespace FlashCards.web.Controllers
         }
 
         // DELETE: api/cardSets/5
-        public IHttpActionResult DeletecardSet(Guid id)
+        public IHttpActionResult DeletecardSet(int id)
         {
             CardSet cardSet = db.CardSets.Find(id);
             if (cardSet == null)
