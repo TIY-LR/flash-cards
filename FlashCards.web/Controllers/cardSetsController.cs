@@ -41,7 +41,7 @@ namespace FlashCards.web.Controllers
             return new
             {
                 CardSet =
-                    db.CardSets.Where(x=>x.Id == id).Select(cs => new
+                    db.CardSets.Where(x => x.Id == id).Select(cs => new
                     {
                         cs.Id,
                         cs.Name,
@@ -52,7 +52,7 @@ namespace FlashCards.web.Controllers
         }
 
         // POST: api/cardSets
-        public IHttpActionResult PostcardSet(EmberWrapper cardSet)
+        public IHttpActionResult PostcardSet(EmberWrapper wrappedCardSet)
         {
             if (!ModelState.IsValid)
             {
@@ -61,29 +61,16 @@ namespace FlashCards.web.Controllers
 
             CardSet newCardSet = new CardSet
             {
-                Name = cardSet.CardSet.Name,
-                Course = db.Courses.Find(cardSet.CardSet.Course)
-
+                Name = wrappedCardSet.CardSet.Name,
+                Course = db.Courses.Find(wrappedCardSet.CardSet.Course)
             };
+
             db.CardSets.Add(newCardSet);
+            db.SaveChanges();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (cardSetExists(newCardSet.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            wrappedCardSet.CardSet.Course = newCardSet.Course.Id;
 
-            return Ok(new { cardSet = newCardSet });
+            return Ok(new { cardSet = wrappedCardSet.CardSet });
         }
 
         // DELETE: api/cardSets/5

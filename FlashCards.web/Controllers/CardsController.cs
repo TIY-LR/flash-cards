@@ -39,7 +39,7 @@ namespace FlashCards.web.Controllers
             };
         }
 
-        public object PostCard(EmberWrapper card)
+        public object PostCard(EmberWrapper wrappedCard)
         {
             if (!ModelState.IsValid)
             {
@@ -48,27 +48,17 @@ namespace FlashCards.web.Controllers
 
             Card newCard = new Card
             {
-                FrontText = card.Card.FrontText,
-                BackText = card.Card.BackText,
-                CardSet = db.CardSets.Find(card.Card.CardSet)
+                FrontText = wrappedCard.Card.FrontText,
+                BackText = wrappedCard.Card.BackText,
+                CardSet = db.CardSets.Find(wrappedCard.Card.CardSet)
             };
 
             db.Cards.Add(newCard);
+            db.SaveChanges();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (CardExists(newCard.Id))
-                {
-                    return Conflict();
-                }
-                throw;
-            }
+            wrappedCard.Card.CardSet = newCard.CardSet.Id;
 
-            return new { card = newCard };
+            return new { card = wrappedCard.Card };
         }
 
         // DELETE: api/Cards/5
