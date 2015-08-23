@@ -33,6 +33,11 @@ namespace FlashCards.web.Models
         public object CardSet { get; set; }
     }
 
+    public class RootObjectCard
+    {
+        public object Card { get; set; }
+    }
+
     public class CardSet
     {
         public int Id { get; set; }

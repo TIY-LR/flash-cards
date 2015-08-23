@@ -26,114 +26,118 @@ namespace FlashCards.web.Controllers
             return Json(new { cards = db.Cards.ToList() });
         }
 
-        // GET: api/Cards/[id]
-        [ResponseType(typeof(Card))]
-        public IHttpActionResult GetCard(int id)
-        {
-            Card card = db.Cards.Find(id);
-            if (card == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(card);
+        public object GetCard(int id)
+        {
+            return new RootObjectCard
+            {
+                Card =
+                    db.Cards.Select(c => new
+                    {
+                        c.Id,
+                        c.FrontText,
+                        c.BackText,
+                        CardSetId = c.CardSet.Id
+                    }).ToList()
+            };
+        }
+    
+
+    //// PUT: api/Cards/5
+    //[ResponseType(typeof(void))]
+    //public IHttpActionResult PutCard(int id, Card Card)
+    //{
+    //    if (!ModelState.IsValid)
+    //    {
+    //        return BadRequest(ModelState);
+    //    }
+
+    //    if (id != Card.Id)
+    //    {
+    //        return BadRequest();
+    //    }
+
+    //    db.Entry(Card).State = EntityState.Modified;
+
+    //    try
+    //    {
+    //        db.SaveChanges();
+    //    }
+    //    catch (DbUpdateConcurrencyException)
+    //    {
+    //        if (!CardExists(id))
+    //        {
+    //            return NotFound();
+    //        }
+    //        else
+    //        {
+    //            throw;
+    //        }
+    //    }
+
+    //    return StatusCode(HttpStatusCode.NoContent);
+    //}
+
+    // POST: api/Cards
+
+    public IHttpActionResult PostCard(CardCreateVM card)
+    {
+        Card newCard = new Card() { FrontText = card.FrontText, BackText = card.BackText };
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
         }
 
-        //// PUT: api/Cards/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutCard(int id, Card Card)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        db.Cards.Add(newCard);
 
-        //    if (id != Card.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(Card).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CardExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        // POST: api/Cards
-        [ResponseType(typeof(Card))]
-        public IHttpActionResult PostCard(CardCreateVM card)
+        try
         {
-            Card newCard = new Card() {FrontText = card.FrontText, BackText = card.BackText};
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Cards.Add(newCard);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (CardExists(newCard.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = newCard.Id }, newCard);
-        }
-
-        // DELETE: api/Cards/5
-        [ResponseType(typeof(Card))]
-        public IHttpActionResult DeleteCard(Guid id)
-        {
-            Card Card = db.Cards.Find(id);
-            if (Card == null)
-            {
-                return NotFound();
-            }
-
-            db.Cards.Remove(Card);
             db.SaveChanges();
-
-            return Ok(Card);
         }
-
-        protected override void Dispose(bool disposing)
+        catch (DbUpdateException)
         {
-            if (disposing)
+            if (CardExists(newCard.Id))
             {
-                db.Dispose();
+                return Conflict();
             }
-            base.Dispose(disposing);
+            else
+            {
+                throw;
+            }
         }
 
-        private bool CardExists(int id)
-        {
-            return db.Cards.Count(e => e.Id == id) > 0;
-        }
+        return Ok(new { card = newCard });
     }
+
+    // DELETE: api/Cards/5
+    [ResponseType(typeof(Card))]
+    public IHttpActionResult DeleteCard(Guid id)
+    {
+        Card Card = db.Cards.Find(id);
+        if (Card == null)
+        {
+            return NotFound();
+        }
+
+        db.Cards.Remove(Card);
+        db.SaveChanges();
+
+        return Ok(Card);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            db.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    private bool CardExists(int id)
+    {
+        return db.Cards.Count(e => e.Id == id) > 0;
+    }
+}
 }
