@@ -9,6 +9,6 @@ namespace FlashCards.web.Models
     public class CardSetVM
     {
         public string Name { get; set; }
-        public int CourseId { get; set; }
+        public int Course { get; set; }
     }
 }

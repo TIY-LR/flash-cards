@@ -98,7 +98,7 @@ namespace FlashCards.web.Controllers
             CardSet newCardSet = new CardSet
             {
                 Name = cardSet.CardSet.Name,
-                Course = db.Courses.Find(cardSet.CardSet.CourseId)
+                Course = db.Courses.Find(cardSet.CardSet.Course)
 
             };
             db.CardSets.Add(newCardSet);
