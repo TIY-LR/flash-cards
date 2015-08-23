@@ -20,7 +20,7 @@ namespace FlashCards.web.Controllers
         // GET: api/cardSets
         public object GetcardSets()
         {
-            return new RootObjectCardSets
+            return new
             {
                 CardSets =
                db.CardSets.Select(cs => new
@@ -35,18 +35,18 @@ namespace FlashCards.web.Controllers
         }
 
         // GET: api/cardSets/5
-    
+
         public object GetcardSet(int id)
         {
-            return new RootObjectCardSet
+            return new
             {
                 CardSet =
-                    db.CardSets.Select(cs => new
+                    db.CardSets.Where(x=>x.Id == id).Select(cs => new
                     {
                         cs.Id,
                         cs.Name,
                         CourseId = cs.Course.Id
-                    }).ToList()
+                    }).ToList().FirstOrDefault()
             };
         }
 

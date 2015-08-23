@@ -20,25 +20,31 @@ namespace FlashCards.web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Cards
-        [ResponseType(typeof(Card))]
-        public IHttpActionResult GetCards()
+        //[ResponseType(typeof(Card))]
+        public object GetCards()
         {
-            return Json(new { cards = db.Cards.ToList() });
+            return new  { Cards = db.Cards.Select(c=> new
+            {
+                c.Id,
+                c.FrontText,
+                c.BackText,
+                CardSetId = c.CardSet.Id
+            }).ToList() };
         }
 
 
         public object GetCard(int id)
         {
-            return new RootObjectCard
+            return new 
             {
                 Card =
-                    db.Cards.Select(c => new
+                    db.Cards.Where(c=>c.Id == id).Select(c => new
                     {
                         c.Id,
                         c.FrontText,
                         c.BackText,
                         CardSetId = c.CardSet.Id
-                    }).ToList()
+                    }).ToList().FirstOrDefault()
             };
         }
     
@@ -80,7 +86,7 @@ namespace FlashCards.web.Controllers
 
     // POST: api/Cards
 
-    public IHttpActionResult PostCard(CardCreateVM card)
+    public object PostCard(CardCreateVM card)
     {
         Card newCard = new Card() { FrontText = card.FrontText, BackText = card.BackText };
 
@@ -107,7 +113,7 @@ namespace FlashCards.web.Controllers
             }
         }
 
-        return Ok(new { card = newCard });
+        return new { card = newCard };
     }
 
     // DELETE: api/Cards/5

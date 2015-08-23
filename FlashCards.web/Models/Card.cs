@@ -6,15 +6,7 @@ using System.Web;
 using Newtonsoft.Json;
 namespace FlashCards.web.Models
 {
-    public class RootObjectCourses
-    {
-        public  object Courses { get; set; }
-    }
-
-    public class RootObjectCourse
-    {
-        public object Course { get; set; }
-    }
+    
 
     public class Course
     {
@@ -23,19 +15,19 @@ namespace FlashCards.web.Models
         public string Name { get; set; }
     }
 
-    public class RootObjectCardSets
+    public class EmberWrapper
     {
-        public object CardSets { get; set; }
-    }
+        public ICollection<CourseVM> Courses { get; set; }
 
-    public class RootObjectCardSet
-    {
-        public object CardSet { get; set; }
-    }
+        public CourseVM Course { get; set; }
 
-    public class RootObjectCard
-    {
-        public object Card { get; set; }
+        public ICollection<CardSetVM> CardSets { get; set; }
+
+        public CardSet CardSet { get; set; }
+
+        public CardVM Card { get; set; }
+
+        public ICollection<CardVM> Cards { get; set; }
     }
 
     public class CardSet

@@ -20,7 +20,7 @@ namespace FlashCards.web.Controllers
         // [ResponseType(typeof(Course))]
         public object GetCourse()
         {
-            return new RootObjectCourses
+            return new 
             {
                 Courses =
                 db.Courses.Select(c => new
@@ -37,15 +37,16 @@ namespace FlashCards.web.Controllers
         //[ResponseType(typeof(Course))]
         public object GetCourse(int id)
         {
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            return new
             {
-                return NotFound();
-            }
-
-            return new RootObjectCourse
-            {
-                Course = course
+                Courses =
+                db.Courses.Where(x=>x.Id == id).Select(c => new
+                {
+                    c.Id,
+                    c.Name,
+                    CardSets =
+                    c.CardSets.Select(cs => cs.Id)
+                }).ToList().FirstOrDefault()
             };
         }
 
@@ -95,7 +96,7 @@ namespace FlashCards.web.Controllers
 
             Course newCourse = new Course
             {
-                Name = course.course.Name,
+                Name = course.Course.Name,
             };
 
             db.Courses.Add(newCourse);
