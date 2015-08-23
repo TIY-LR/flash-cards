@@ -27,7 +27,7 @@ namespace FlashCards.web.Controllers
                {
                    cs.Id,
                    cs.Name,
-                   CourseName = cs.Course.Name,
+                   Course = cs.Course.Id,
                    Cards = cs.Cards.Select(c => c.Id)
                }).ToList()
             };
@@ -45,7 +45,8 @@ namespace FlashCards.web.Controllers
                     {
                         cs.Id,
                         cs.Name,
-                        CourseId = cs.Course.Id
+                        Course = cs.Course.Id,
+                        Cards = cs.Cards.Select(c => c.Id)
                     }).ToList().FirstOrDefault()
             };
         }

@@ -28,7 +28,7 @@ namespace FlashCards.web.Controllers
                 c.Id,
                 c.FrontText,
                 c.BackText,
-                CardSetId = c.CardSet.Id
+                CardSet = c.CardSet.Id
             }).ToList() };
         }
 
@@ -43,7 +43,7 @@ namespace FlashCards.web.Controllers
                         c.Id,
                         c.FrontText,
                         c.BackText,
-                        CardSetId = c.CardSet.Id
+                        CardSet = c.CardSet.Id
                     }).ToList().FirstOrDefault()
             };
         }
